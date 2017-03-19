@@ -23,11 +23,14 @@ def get_stats (target):
     coin: %s
     value: %s
     volume: %s
+    market-cap: %s
     24-hour change: %s
     time: %s
                 ''' %(coin['name'],
                 '$' + str(coin['price']['usd']),
-                coin['volume']['usd'], coin['change'], make_readable_time(coin['timestamp']))
+                '$' + str(coin['volume']['usd']),
+                '$' + str(coin['market-cap']['usd']),
+                coin['change'], make_readable_time(coin['timestamp']))
 
     return closure
 

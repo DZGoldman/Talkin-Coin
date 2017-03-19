@@ -13,11 +13,14 @@ app = Flask(__name__)
 
 @app.route('/', methods=['Post'])
 def recieve():
-    print(request.data)
-    data = json.loads(request.data)
-    if data.token == webhook_token:
-        text, user_id, channel_id = data['text'], data['user_id'], data['channel_id']
-        user_tag = user_tag = "<@%s>" %(user)
+
+    data = request.form
+    if data.get('token') == webhook_token:
+        print('----------passed')
+        text, user_id, channel_id = data.get('text'), data.get('user_id'), data.get('channel_id')
+        print('-------text')
+        print(text)
+        user_tag = user_tag = "<@%s>" %(user_id)
         slack.chat.post_message(channel_id, user_tag + ' ' + get_data( get_stats(text)))
 
 if __name__ == '__main__':

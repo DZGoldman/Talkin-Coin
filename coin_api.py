@@ -4,12 +4,12 @@ import requests, datetime, os
 def get_data (success=lambda x:x, fail=lambda x:x):
     base_url = 'https://coinmarketcap-nexuist.rhcloud.com/api/all'
     res = requests.get(base_url)
-    return success(res.json()) if res.ok else fail(res.error)
+    return success(res.json()) if res.ok else fail(res.text)
 
 def get_single_coin(coin, success=lambda x:x, fail=lambda x:x):
     base_url = 'https://coinmarketcap-nexuist.rhcloud.com/api/'+coin
     res = requests.get(base_url)
-    return success(res.json()) if res.ok else fail(res.error)
+    return success(res.json()) if res.ok else fail(res.text)
 def error_logger():
     pass
 def get_stats (target, full_names={}):

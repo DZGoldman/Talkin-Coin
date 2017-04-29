@@ -1,4 +1,4 @@
-
+# NOTE: not currently using, method could be deprecated
 import requests, datetime, os
 
 def get_data (success=lambda x:x, fail=lambda x:x):

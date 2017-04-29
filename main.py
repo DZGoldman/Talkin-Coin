@@ -22,7 +22,6 @@ def recieve():
         user_tag = user_tag = "<@%s>" %(user_id)
         slack.chat.post_message(channel_id, user_tag + ' ' + coin_api.get_data_main(text))
         return 'done'
-print(coin_api.get_data_main('eth'))
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 3000))
     app.run(host='0.0.0.0', port=port)

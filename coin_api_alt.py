@@ -1,6 +1,5 @@
 import requests, datetime, os
 import re
-from IPython import embed
 class CoinAPI():
     def __init__ (self):
         self.base_url =  'https://api.coinmarketcap.com/v1/ticker/'

@@ -26,5 +26,6 @@ class CoinApiTests(unittest.TestCase):
         self.assertEqual(self.coin_api.get_data_main('No coins in here'), self.coin_api.not_found_message)
         time.sleep(1)
         eth_result = self.coin_api.get_data_main('eth please')
+        print(eth_result)
         self.assertTrue('ethereum' in eth_result and 'market_cap_usd' in eth_result)
 unittest.main()

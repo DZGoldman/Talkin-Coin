@@ -3,6 +3,6 @@ import os
 
 exit_code = os.system("python src/test.py")
 if (exit_code == 0):
-    os.system('git push heroku master')
+    os.system('git push --force heroku master')
 else:
     print('Tests failed, deploy cancelled.')

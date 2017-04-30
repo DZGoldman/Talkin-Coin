@@ -27,5 +27,5 @@ def all_time_high():
     coin_api = CoinAPI(is_cron = True)
     coin_api.get_all_coins(check_all_time_highs)
 
-if (task == 'maxvals'):
+if (task == 'ath'):
     all_time_high()

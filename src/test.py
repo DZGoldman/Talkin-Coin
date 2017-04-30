@@ -1,6 +1,7 @@
 import unittest, time
 from coin_api_alt import CoinAPI
 from cron import all_time_high
+from db import DBClient
 
 class CoinApiTests(unittest.TestCase):
     def setUp(self):
@@ -33,7 +34,9 @@ class CoinApiTests(unittest.TestCase):
         eth_result = self.coin_api.get_data_main('eth please')
         print(eth_result)
         self.assertTrue('ethereum' in eth_result and 'market_cap_usd' in eth_result)
-
+    def test_db_connect(self):
+        self.assertTrue(DBClient())
+        self.assertEqual(len(DBClient().get_all_max_vals()), 4)
     # def test_cron_all_time_high(self):
     #     print(all_time_high())
 

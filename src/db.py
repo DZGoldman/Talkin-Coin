@@ -2,10 +2,11 @@ import pymysql, os
 class DBClient():
     def __init__ (self):
         self.connection = pymysql.connect(
-            host = 'localhost',
-            user ='root',
-            password= os.environ['PWORD'],
-            db = 'TalkinCoin')
+            host = os.environ.get('CLEARDB_DATABASE_URL') or  'localhost',
+            user = os.environ.get('DB_USERNAME') or 'root',
+            password= os.environ.get('DB_PASSWORD') or os.environ.get('PWORD'),
+            db = os.environ.get('DB_DATABASE') or 'TalkinCoin'
+            )
 
     def get_all_max_vals(self):
         with self.connection.cursor() as cursor:
@@ -36,5 +37,3 @@ class DBClient():
                     ''' .format(name, str(max_val))
                 )
             self.connection.commit()
-# seed_max_values()
-# get_all_max_vals()

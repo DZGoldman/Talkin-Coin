@@ -2,7 +2,10 @@ from slack_api import *
 from coin_api_alt import CoinAPI
 from db import DBClient
 from slack_api import *
-import sys
+import sys, os
+
+channel_id = os.environ.get('BTCHANNEL_ID') or goldman_slack_id
+
 task = len(sys.argv) > 1 and  sys.argv[1]
 
 def check_all_time_highs(data, log_to_slack = True):
@@ -17,7 +20,7 @@ def check_all_time_highs(data, log_to_slack = True):
             db_client.update_max_value(coin_id, current_value)
             message = "<!channel> {} is at it's all time high at {}!".format(symbol, str(current_value))
             if log_to_slack:
-                slack.chat.post_message(message)
+                slack.chat.post_message(channel_id, message)
             else:
                 print(message)
 

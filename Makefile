@@ -15,3 +15,6 @@ ath:
 
 deploy:
 	python src/deploy.py
+
+enter_db:
+	python src/enter_db.py

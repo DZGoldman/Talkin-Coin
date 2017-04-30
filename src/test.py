@@ -1,5 +1,6 @@
 import unittest, time
-from src.coin_api_alt import CoinAPI
+from coin_api_alt import CoinAPI
+from cron import all_time_high
 
 class CoinApiTests(unittest.TestCase):
     def setUp(self):
@@ -32,4 +33,8 @@ class CoinApiTests(unittest.TestCase):
         eth_result = self.coin_api.get_data_main('eth please')
         print(eth_result)
         self.assertTrue('ethereum' in eth_result and 'market_cap_usd' in eth_result)
+
+    # def test_cron_all_time_high(self):
+    #     print(all_time_high())
+
 unittest.main()

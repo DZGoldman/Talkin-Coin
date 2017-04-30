@@ -2,22 +2,11 @@ import requests, datetime, os
 import re
 class CoinAPI():
     def __init__ (self, is_cron = None):
-        if is_cron:
-            get_cron_data()
-        else:
-            self.base_url =  'https://api.coinmarketcap.com/v1/ticker/'
+        self.base_url =  'https://api.coinmarketcap.com/v1/ticker/'
+        self.not_found_message = 'No Coins Dumbass'
+        if not is_cron:
             self.ids_to_name = self.get_all_coins(self.map_ids_to_name)
             self.names_set = {self.ids_to_name[coin_id].lower() for coin_id in self.ids_to_name }
-            self.not_found_message = 'No Coins Dumbass'
-    def get_cron_data(self):
-        eth_data = self.get_single_coin('ethereum')
-        if eth_data and len(eth_data) and 'price_usd' in eth_data[0]:
-            price = eth_data[0]['price_usd']
-            if price > 80:
-                self.cron_data = True
-        else:
-            return False
-        pass
     def get_all_coins (self, success=lambda x:x, fail=lambda x:x):
         res = requests.get(self.base_url)
         return success(res.json()) if res.ok else fail(res.text)

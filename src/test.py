@@ -36,6 +36,6 @@ class CoinApiTests(unittest.TestCase):
     def test_db_connect(self):
         self.assertTrue(DBClient())
         self.assertEqual(len(DBClient().get_all_max_vals()), 4)
-    # def test_cron_all_time_high(self):
-    #     print(all_time_high())
-u = unittest.main(verbosity=2)
+        # self.assertTrue(False)
+
+unittest.main(verbosity=2)

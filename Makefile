@@ -12,3 +12,6 @@ start:
 
 ath:
 	python src/cron.py ath
+
+deploy:
+	python src/testing.py

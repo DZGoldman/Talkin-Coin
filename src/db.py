@@ -27,7 +27,7 @@ class DBClient():
     def seed_max_values(self):
         with self.connection.cursor() as cursor:
             cursor.execute('DELETE FROM MaxValues')
-            coins = [('eth', 0), ('btc', 0), ('xem', 0), ('xrp', 0)]
+            coins = [('eth', 74.0), ('btc', 1351.11), ('xem', 0.050), ('xrp', 0.53) ]
             for coin in coins:
                 name, max_val = coin
                 cursor.execute(
@@ -37,3 +37,17 @@ class DBClient():
                     ''' .format(name, str(max_val))
                 )
             self.connection.commit()
+    def create_max_val_tables(self):
+        with self.connection.cursor() as cursor:
+            cursor.execute(
+                '''
+                DROP TABLE if exists MaxValues;
+                CREATE TABLE MaxValues(
+                  id SERIAL PRIMARY KEY,
+                  coin_name VARCHAR(255) not null,
+                  max_val FLOAT
+                )
+                '''
+            )
+            self.connection.commit()
+            pass

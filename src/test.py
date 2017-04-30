@@ -2,7 +2,7 @@ import unittest, time
 from coin_api_alt import CoinAPI
 from cron import all_time_high
 from db import DBClient
-
+from IPython import embed
 class CoinApiTests(unittest.TestCase):
     def setUp(self):
         self.coin_api = CoinAPI()
@@ -39,5 +39,5 @@ class CoinApiTests(unittest.TestCase):
         self.assertEqual(len(DBClient().get_all_max_vals()), 4)
     # def test_cron_all_time_high(self):
     #     print(all_time_high())
-
-unittest.main()
+u = unittest.main(verbosity=2)
+embed()

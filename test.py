@@ -18,10 +18,14 @@ class CoinApiTests(unittest.TestCase):
 
     def test_extract_coin_from_text(self):
         extract = self.coin_api.extract_coin_from_text
+        self.assertFalse(extract(''))
         self.assertEqual( extract('I want BITCOIN! stats'), 'bitcoin')
         self.assertEqual( extract('I want btC! stats'), 'bitcoin')
-        self.assertFalse(extract(''))
         self.assertFalse(extract('there are no coins in here'))
+        
+    def test_prettify(self):
+        self.assertFalse(self.coin_api.prettify_data({}))
+
     def test_main(self):
         self.assertEqual(self.coin_api.get_data_main('No coins in here'), self.coin_api.not_found_message)
         time.sleep(1)

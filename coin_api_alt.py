@@ -11,7 +11,7 @@ class CoinAPI():
             self.not_found_message = 'No Coins Dumbass'
     def get_cron_data(self):
         eth_data = self.get_single_coin('ethereum')
-        if eth_data and len(eth_data) 'price_usd' in eth_data[0]:
+        if eth_data and len(eth_data) and 'price_usd' in eth_data[0]:
             price = eth_data[0]['price_usd']
             if price > 80:
                 self.cron_data = True
@@ -47,7 +47,7 @@ class CoinAPI():
             float(ts)
         ).strftime('%Y-%m-%d %H:%M:%S')
 
-    def prettify_data(self,data):
+    def prettify_data(self, data):
         all_keys = data.keys()
         for key in all_keys:
             if 'usd' in key:
@@ -56,11 +56,8 @@ class CoinAPI():
                 data[key] = str(data[key]) + '%'
             elif key == 'last_updated':
                 data[key] = self.make_readable_time(data[key])
-        nice_string =''
-        for key in data:
-            line = '%s: %s \n'%(key, data[key])
-            nice_string += line
-        return nice_string
+        line_list = ['%s: %s'%(key, data[key]) for key in data]
+        return '\n'.join(sorted(line_list))
 
     def get_data_main(self, text):
         coin = self.extract_coin_from_text(text)

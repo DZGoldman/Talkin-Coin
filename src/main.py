@@ -19,6 +19,7 @@ def recieve():
     if data.get('token') == webhook_token:
         text, user_id, channel_id = data.get('text'), data.get('user_id'), data.get('channel_id')
         print('-----text -----', text)
+        print(channel_id)
         user_tag = user_tag = "<@%s>" %(user_id)
         slack.chat.post_message(channel_id, user_tag + ' ' + coin_api.get_data_main(text))
         return 'done'

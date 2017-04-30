@@ -1,5 +1,5 @@
 import unittest, time
-from coin_api_alt import CoinAPI
+from src.coin_api_alt import CoinAPI
 
 class CoinApiTests(unittest.TestCase):
     def setUp(self):
@@ -22,7 +22,7 @@ class CoinApiTests(unittest.TestCase):
         self.assertEqual( extract('I want BITCOIN! stats'), 'bitcoin')
         self.assertEqual( extract('I want btC! stats'), 'bitcoin')
         self.assertFalse(extract('there are no coins in here'))
-        
+
     def test_prettify(self):
         self.assertFalse(self.coin_api.prettify_data({}))
 

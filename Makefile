@@ -3,8 +3,7 @@ init:
 
 test:
 	python src/test.py
-	say 'yo'
-	
+
 db_setup:
 	python src/set_up_db.py
 

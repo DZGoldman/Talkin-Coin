@@ -5,7 +5,7 @@ from slack_api import *
 import sys
 task = len(sys.argv) > 1 and  sys.argv[1]
 
-def check_all_time_highs(data, log_to_slack = False):
+def check_all_time_highs(data, log_to_slack = True):
     selected_coins = set(['btc','eth', 'xem', 'xrp'])
     current_val_map = {coin['symbol'].lower(): coin['price_usd'] for coin in data if coin['symbol'].lower() in selected_coins}
     db_client = DBClient()

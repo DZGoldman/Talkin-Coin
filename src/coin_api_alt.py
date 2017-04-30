@@ -3,7 +3,7 @@ import re
 class CoinAPI():
     def __init__ (self, is_cron = None):
         self.base_url =  'https://api.coinmarketcap.com/v1/ticker/'
-        self.not_found_message = 'No Coins Dumbass'
+        self.not_found_message = "I thought we were talkin' coin here."
         if not is_cron:
             self.ids_to_name = self.get_all_coins(self.map_ids_to_name)
             self.names_set = {self.ids_to_name[coin_id].lower() for coin_id in self.ids_to_name }

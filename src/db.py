@@ -2,7 +2,7 @@ import pymysql, os
 class DBClient():
     def __init__ (self):
         self.connection = pymysql.connect(
-            host = os.environ.get('CLEARDB_DATABASE_URL') or  'localhost',
+            host = os.environ.get('DB_HOST') or  'localhost',
             user = os.environ.get('DB_USERNAME') or 'root',
             password= os.environ.get('DB_PASSWORD') or os.environ.get('PWORD'),
             db = os.environ.get('DB_DATABASE') or 'TalkinCoin'

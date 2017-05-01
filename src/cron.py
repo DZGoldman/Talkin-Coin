@@ -18,7 +18,7 @@ def check_all_time_highs(data, log_to_slack = True):
         current_value = float(current_val_map[symbol])
         if current_value > float(old_ath):
             db_client.update_max_value(coin_id, current_value)
-            message = "<!channel> {} is at it's all time high at {}!".format(symbol, str(current_value))
+            message = "<!channel> {} is at its all time high at {}!".format(symbol, str(current_value))
             if log_to_slack:
                 slack.chat.post_message(channel_id, message)
             else:

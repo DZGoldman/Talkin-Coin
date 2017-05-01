@@ -35,7 +35,7 @@ class CoinApiTests(unittest.TestCase):
         self.assertTrue('ethereum' in eth_result and 'market_cap_usd' in eth_result)
     def test_db_connect(self):
         self.assertTrue(DBClient())
-        self.assertEqual(len(DBClient().get_all_max_vals()), 4)
+        self.assertEqual(len(DBClient().get_all_max_vals()), 5)
         # self.assertTrue(False)
 
 unittest.main(verbosity=2)

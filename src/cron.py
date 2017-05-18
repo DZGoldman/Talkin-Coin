@@ -9,11 +9,12 @@ channel_id = os.environ.get('BTCHANNEL_ID') or goldman_slack_id
 task = len(sys.argv) > 1 and  sys.argv[1]
 
 def check_all_time_highs(data, log_to_slack = True):
-    selected_coins = set(['btc','eth', 'xem', 'xrp', 'bcc', 'nlg'])
-    current_val_map = {coin['symbol'].lower(): coin['price_usd'] for coin in data if coin['symbol'].lower() in selected_coins}
     db_client = DBClient()
+    all_max_vals = db_client.get_all_max_vals()
+    selected_coins = {max_val[1] for max_val in all_max_vals}
+    current_val_map = {coin['symbol'].lower(): coin['price_usd'] for coin in data if coin['symbol'].lower() in selected_coins}
     # db_client.seed_max_values()
-    for max_value in db_client.get_all_max_vals():
+    for max_value in all_max_vals:
         coin_id, symbol, old_ath = max_value
         current_value = float(current_val_map[symbol])
         if current_value > float(old_ath):

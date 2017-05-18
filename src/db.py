@@ -37,6 +37,17 @@ class DBClient():
                     ''' .format(name, str(max_val))
                 )
             self.connection.commit()
+    def add_max_value(self, coin_name, max_val):
+        with self.connection.cursor() as cursor:
+            cursor.execute(
+                '''
+                INSERT INTO MaxValues (coin_name, max_val)
+                VALUES ('{}', {})
+                ''' .format(coin_name, str(max_val))
+            )
+            self.connection.commit()
+
+
     def create_max_val_tables(self):
         with self.connection.cursor() as cursor:
             cursor.execute(

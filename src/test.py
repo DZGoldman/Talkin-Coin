@@ -1,7 +1,10 @@
-import unittest, time, os
+import unittest, time, os, requests
 from coin_api_alt import CoinAPI
 from cron import all_time_high
 from db import DBClient
+
+
+
 class CoinApiTests(unittest.TestCase):
     def setUp(self):
         self.coin_api = CoinAPI()
@@ -33,12 +36,19 @@ class CoinApiTests(unittest.TestCase):
         eth_result = self.coin_api.get_data_main('eth please')
         print(eth_result)
         self.assertTrue('ethereum' in eth_result and 'market_cap_usd' in eth_result)
+        
+class DBTests(unittest.TestCase):
     def test_db_connect(self):
         self.assertTrue(DBClient())
         self.assertEqual(len(DBClient().get_all_max_vals()), 6)
-        # self.assertTrue(False)
+
+class CronTests(unittest.TestCase):
     def test_check_all_time_high(self):
         self.assertEqual( os.system('python src/cron.py ath'), 0)
 
-
-unittest.main(verbosity=2)
+res = requests.get("https://coinmarketcap-nexuist.rhcloud.com/api")
+if res.status_code ==200:
+    unittest.main(verbosity=2)
+else:
+        print("Failed to connect to coin api" )
+        print(res.text)

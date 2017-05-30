@@ -13,8 +13,5 @@ start:
 ath:
 	python src/cron.py ath
 
-deploy:
-	python src/deploy.py
-
 enter_db:
 	python src/enter_db.py

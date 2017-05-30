@@ -1,0 +1,9 @@
+#!/usr/bin/env python
+
+import os, sys
+
+exit_code = os.system("python src/test.py")
+
+if (exit_code != 0 ):
+    print('Test failed, cancelling push')
+    sys.exit(1)

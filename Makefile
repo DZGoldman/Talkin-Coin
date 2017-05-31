@@ -12,6 +12,9 @@ start:
 
 ath:
 	python src/cron.py ath
+	
+pc:
+	python src/cron.py pc
 
 enter_db:
 	python src/enter_db.py

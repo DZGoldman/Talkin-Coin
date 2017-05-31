@@ -45,6 +45,9 @@ class DBTests(unittest.TestCase):
 class CronTests(unittest.TestCase):
     def test_check_all_time_high(self):
         self.assertEqual( os.system('python src/cron.py ath'), 0)
+    def test_check_percent_change(self):
+        self.assertEqual( os.system('python src/cron.py pc'), 0)
+
 
 res = requests.get("https://coinmarketcap-nexuist.rhcloud.com/api")
 if res.status_code ==200:

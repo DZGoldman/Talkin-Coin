@@ -24,8 +24,24 @@ def check_all_time_highs(data, log_to_slack = True):
                 slack.chat.post_message(channel_id, message)
             else:
                 print(message)
+def check_percent_change(data):
+    db_client = DBClient()
+    all_max_vals = db_client.get_all_max_vals()
+    selected_coins = {max_val[1] for max_val in all_max_vals}
+    current_val_map = {coin['symbol'].lower(): coin['percent_change_24h'] for coin in data if coin['symbol'].lower() in selected_coins}
+    for coin in current_val_map:
+        percent = current_val_map[coin]
+        if float(percent) > 10:
+            slack.chat.post_message(channel_id, '<!channel> {} increased by {}% in the past 24 hours.'.format(coin, percent))
+        elif float(percent) < -10:
+            slack.chat.post_message(channel_id, '<!channel> {} decreased by {}% in the past 24 hours.'.format(coin, percent))
 
 
+    pass
+
+def percent_change():
+    coin_api = CoinAPI(is_cron = True)
+    coin_api.get_all_coins(check_percent_change)
 
 def all_time_high():
     coin_api = CoinAPI(is_cron = True)
@@ -33,3 +49,5 @@ def all_time_high():
 
 if (task == 'ath'):
     all_time_high()
+elif task == 'pc':
+    percent_change()

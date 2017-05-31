@@ -35,10 +35,7 @@ def check_percent_change(data):
             slack.chat.post_message(channel_id, '<!channel> {} increased by {}% in the past 24 hours.'.format(coin, percent))
         elif float(percent) < -10:
             slack.chat.post_message(channel_id, '<!channel> {} decreased by {}% in the past 24 hours.'.format(coin, percent))
-
-
-    pass
-
+            
 def percent_change():
     coin_api = CoinAPI(is_cron = True)
     coin_api.get_all_coins(check_percent_change)

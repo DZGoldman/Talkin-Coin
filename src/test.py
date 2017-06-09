@@ -40,7 +40,7 @@ class CoinApiTests(unittest.TestCase):
 class DBTests(unittest.TestCase):
     def test_db_connect(self):
         self.assertTrue(DBClient())
-        self.assertEqual(len(DBClient().get_all_max_vals()), 6)
+        self.assertEqual(len(DBClient().get_all_max_vals()), 5)
 
 class CronTests(unittest.TestCase):
     def test_check_all_time_high(self):

@@ -7,7 +7,16 @@ class DBClient():
             password= os.environ.get('DB_PASSWORD') or os.environ.get('PWORD'),
             db = os.environ.get('DB_DATABASE') or 'TalkinCoin'
             )
+    def delete_max_value(self, name):
+        with self.connection.cursor() as cursor:
+            cursor.execute(
+                '''
+                DELETE FROM  MaxValues
 
+                WHERE coin_name = '{name}'
+                '''.format(name=name)
+                )
+            self.connection.commit()
     def get_all_max_vals(self):
         with self.connection.cursor() as cursor:
             cursor.execute("SELECT * FROM MaxValues")
